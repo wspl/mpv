@@ -16,14 +16,14 @@ source_root = meson.project_source_root()
 python = find_program('python3')
 
 # ffmpeg
-libavcodec = dependency('libavcodec', version: '>= 58.134.100')
-libavfilter = dependency('libavfilter', version: '>= 7.110.100')
-libavformat = dependency('libavformat', version: '>= 58.76.100')
-libavutil = dependency('libavutil', version: '>= 56.70.100')
-libswresample = dependency('libswresample', version: '>= 3.9.100')
-libswscale = dependency('libswscale', version: '>= 5.9.100')
+libavcodec = dependency('libavcodec', version: '>= 58.134.100', static: true)
+libavfilter = dependency('libavfilter', version: '>= 7.110.100', static: true)
+libavformat = dependency('libavformat', version: '>= 58.76.100', static: true)
+libavutil = dependency('libavutil', version: '>= 56.70.100', static: true)
+libswresample = dependency('libswresample', version: '>= 3.9.100', static: true)
+libswscale = dependency('libswscale', version: '>= 5.9.100', static: true)
 
-libass = dependency('libass', version: '>= 0.12.2')
+libass = dependency('libass', version: '>= 0.12.2', static: true)
 pthreads = dependency('threads')
 
 # the dependency order of libass -> ffmpeg is necessary due to
@@ -1728,7 +1728,7 @@ client_api_version = major + '.' + minor + '.0'
 
 libmpv = library('mpv', sources, dependencies: dependencies, gnu_symbol_visibility: 'hidden',
                  link_args: cc.get_supported_link_arguments(['-Wl,-Bsymbolic']),
-                 version: client_api_version, include_directories: includedir,
+                 include_directories: includedir,
                  install: get_option('libmpv'), build_by_default: get_option('libmpv'))
 
 
@@ -1740,6 +1740,7 @@ if get_option('libmpv')
     headers = ['libmpv/client.h', 'libmpv/render.h',
                'libmpv/render_gl.h', 'libmpv/stream_cb.h']
     install_headers(headers, subdir: 'mpv')
+    
 endif
 
 if get_option('cplayer')

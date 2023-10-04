@@ -1,7 +1,7 @@
 # booleans
-option('gpl', type: 'boolean', value: true, description: 'GPL (version 2 or later) build')
-option('cplayer', type: 'boolean', value: true, description: 'mpv CLI player')
-option('libmpv', type: 'boolean', value: false, description: 'libmpv library')
+option('gpl', type: 'boolean', value: false, description: 'GPL (version 2 or later) build')
+option('cplayer', type: 'boolean', value: false, description: 'mpv CLI player')
+option('libmpv', type: 'boolean', value: true, description: 'libmpv library')
 option('build-date', type: 'boolean', value: true, description: 'whether to include binary compile time')
 option('tests', type: 'boolean', value: false, description: 'meson unit tests')
 # Reminder: normally always built, but enabled by MPV_LEAK_REPORT.
@@ -10,34 +10,34 @@ option('ta-leak-report', type: 'boolean', value: false, description: 'enable ta 
 
 # misc features
 option('cdda', type: 'feature', value: 'disabled', description: 'cdda support (libcdio)')
-option('cplugins', type: 'feature', value: 'auto', description: 'C plugins')
+option('cplugins', type: 'feature', value: 'disabled', description: 'C plugins')
 option('dvbin', type: 'feature', value: 'disabled', description: 'DVB input module')
 option('dvdnav', type: 'feature', value: 'disabled', description: 'dvdnav support')
-option('iconv', type: 'feature', value: 'auto', description: 'iconv')
-option('javascript', type: 'feature', value: 'auto', description: 'Javascript (MuJS backend)')
-option('lcms2', type: 'feature', value: 'auto', description: 'LCMS2 support')
-option('libarchive', type: 'feature', value: 'auto', description: 'libarchive wrapper for reading zip files and more')
-option('libavdevice', type: 'feature', value: 'auto', description: 'libavdevice')
-option('libbluray', type: 'feature', value: 'auto', description: 'Bluray support')
+option('iconv', type: 'feature', value: 'disabled', description: 'iconv')
+option('javascript', type: 'feature', value: 'disabled', description: 'Javascript (MuJS backend)')
+option('lcms2', type: 'feature', value: 'disabled', description: 'LCMS2 support')
+option('libarchive', type: 'feature', value: 'disabled', description: 'libarchive wrapper for reading zip files and more')
+option('libavdevice', type: 'feature', value: 'disabled', description: 'libavdevice')
+option('libbluray', type: 'feature', value: 'disabled', description: 'Bluray support')
 option('lua',
     type: 'combo',
     choices: ['lua', 'lua52', 'lua5.2', 'lua-5.2', 'luajit', 'lua51',
               'lua5.1', 'lua-5.1', 'auto', 'enabled', 'disabled'],
-    value: 'auto',
+    value: 'disabled',
     description: 'Lua'
 )
 option('pthread-debug', type: 'feature', value: 'disabled', description: 'pthread runtime debugging wrappers')
-option('rubberband', type: 'feature', value: 'auto', description: 'librubberband support')
+option('rubberband', type: 'feature', value: 'disabled', description: 'librubberband support')
 option('sdl2', type: 'feature', value: 'disabled', description: 'SDL2')
-option('sdl2-gamepad', type: 'feature', value: 'auto', description: 'SDL2 gamepad input')
-option('stdatomic', type: 'feature', value: 'auto', description: 'C11 stdatomic.h')
-option('uchardet', type: 'feature', value: 'auto', description: 'uchardet support')
+option('sdl2-gamepad', type: 'feature', value: 'disabled', description: 'SDL2 gamepad input')
+option('stdatomic', type: 'feature', value: 'disabled', description: 'C11 stdatomic.h')
+option('uchardet', type: 'feature', value: 'disabled', description: 'uchardet support')
 option('uwp', type: 'feature', value: 'disabled', description: 'Universal Windows Platform')
-option('vapoursynth', type: 'feature', value: 'auto', description: 'VapourSynth filter bridge')
-option('vector', type: 'feature', value: 'auto', description: 'GCC vector instructions')
+option('vapoursynth', type: 'feature', value: 'disabled', description: 'VapourSynth filter bridge')
+option('vector', type: 'feature', value: 'disabled', description: 'GCC vector instructions')
 option('win32-internal-pthreads', type: 'feature', value: 'auto', description: 'internal pthread wrapper for win32 (Vista+)')
-option('zimg', type: 'feature', value: 'auto', description: 'libzimg support (high quality software scaler)')
-option('zlib', type: 'feature', value: 'auto', description: 'zlib')
+option('zimg', type: 'feature', value: 'disabled', description: 'libzimg support (high quality software scaler)')
+option('zlib', type: 'feature', value: 'disabled', description: 'zlib')
 
 # audio output features
 option('alsa', type: 'feature', value: 'auto', description: 'ALSA audio output')
@@ -74,7 +74,7 @@ option('gl-cocoa', type: 'feature', value: 'auto', description: 'gl-cocoa')
 option('gl-dxinterop', type: 'feature', value: 'auto', description: 'OpenGL/DirectX Interop Backend')
 option('gl-win32', type: 'feature', value: 'auto', description: 'OpenGL Win32 Backend')
 option('gl-x11', type: 'feature', value: 'disabled', description: 'OpenGL X11/GLX (deprecated/legacy)')
-option('jpeg', type: 'feature', value: 'auto', description: 'JPEG support')
+option('jpeg', type: 'feature', value: 'disabled', description: 'JPEG support')
 option('libplacebo', type: 'feature', value: 'auto', description: 'libplacebo support')
 option('rpi', type: 'feature', value: 'disabled', description: 'Raspberry Pi support')
 option('sdl2-video', type: 'feature', value: 'auto', description: 'SDL2 video output')
@@ -111,11 +111,11 @@ option('macos-10-12-2-features', type: 'feature', value: 'auto', description: 'm
 option('macos-10-14-features', type: 'feature', value: 'auto', description: 'macOS 10.14 SDK Features')
 option('macos-cocoa-cb', type: 'feature', value: 'auto', description: 'macOS libmpv backend')
 option('macos-media-player', type: 'feature', value: 'auto', description: 'macOS Media Player support')
-option('macos-touchbar', type: 'feature', value: 'auto', description: 'macOS Touch Bar support')
-option('swift-build', type: 'feature', value: 'auto', description: 'macOS Swift build tools')
+option('macos-touchbar', type: 'feature', value: 'disabled', description: 'macOS Touch Bar support')
+option('swift-build', type: 'feature', value: 'disabled', description: 'macOS Swift build tools')
 option('swift-flags', type: 'string', description: 'Optional Swift compiler flags')
 
 # manpages
 option('html-build', type: 'feature', value: 'disabled', description: 'html manual generation')
-option('manpage-build', type: 'feature', value: 'auto', description: 'manpage generation')
+option('manpage-build', type: 'feature', value: 'disabled', description: 'manpage generation')
 option('pdf-build', type: 'feature', value: 'disabled', description: 'pdf manual generation')
